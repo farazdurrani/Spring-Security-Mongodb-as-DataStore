@@ -23,25 +23,14 @@ If this application were to use JDBC type data store, and if we didn't have cust
 Spring security expects above tables and schema to be present. But if we had different tables and schema, there is a way to tell Spring Security to use that this way:
 
     @Override
-
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
       auth
-  
-      .jdbcAuthentication()
-  
-      .dataSource(dataSource)
-    
-      .usersByUsernameQuery(
-    
-        "select username, password MySpecialTable " +
-      
-        "where username=?")
-    
-      .authoritiesByUsernameQuery(
-    
-        "select username, authority from MySecondSpecialTable " +
-      
-        "where username=?");
-      
+          .jdbcAuthentication()
+          .dataSource(dataSource)
+          .usersByUsernameQuery(
+                "select username, password MySpecialTable " +
+                "where username=?")
+          .authoritiesByUsernameQuery(
+                "select username, authority from MySecondSpecialTable " +
+                "where username=?");
     }
