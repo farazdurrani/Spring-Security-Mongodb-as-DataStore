@@ -22,26 +22,26 @@ select g.id, g.group_name, ga.authority from groups g, group_members gm, group_a
 
 Spring security expects above tables and schema to be present. But if we had different tables and schema, there is a way to tell Spring Security to use that this way:
 
-@Override
+    @Override
 
-protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-  auth
+      auth
   
-    .jdbcAuthentication()
+      .jdbcAuthentication()
   
-    .dataSource(dataSource)
+      .dataSource(dataSource)
     
-    .usersByUsernameQuery(
+      .usersByUsernameQuery(
     
-      "select username, password MySpecialTable " +
+        "select username, password MySpecialTable " +
       
-      "where username=?")
+        "where username=?")
     
-    .authoritiesByUsernameQuery(
+      .authoritiesByUsernameQuery(
     
-      "select username, authority from MySecondSpecialTable " +
+        "select username, authority from MySecondSpecialTable " +
       
-      "where username=?");
+        "where username=?");
       
-}
+    }
