@@ -35,7 +35,7 @@ Spring Security expects above tables and schema to be present in database. But i
                 "where username=?");
     }
 
-Another way is to use custom UserDetailsService. In it, implement UserDetailsService and over loadUserByUsername method like below 
+Another way is to use custom UserDetailsService. In it, implement UserDetailsService and overload UserByUsername method like below 
 
     @Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
