@@ -34,3 +34,23 @@ Spring Security expects above tables and schema to be present in database. But i
                 "select username, authority from MySecondSpecialTable " +
                 "where username=?");
     }
+
+Another way is to use custom UserDetailsService. In it, implement UserDetailsService and over loadUserByUsername method like below 
+
+    @Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = userRepo.findByUsername(username);
+		if (user != null) {
+			return user;
+		}
+		throw new UsernameNotFoundException("User '" + username + "' not found");
+	}
+
+and inject custom UserDetailsService into a class that extends WebSecurityConfigurerAdapter and overrides configure(AuthenticationManagerBuilder auth) method like this:
+
+    @Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
+	}
+    
+This way, we can use custom JDBC tables/schemas, or just use totally different user store, like in this example, NoSQL database is used. 
