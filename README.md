@@ -20,7 +20,7 @@ If this application were to use JDBC type data store, and if we didn't have cust
     select username,authority from authorities where username = ?;
     select g.id, g.group_name, ga.authority from groups g, group_members gm, group_authorities ga where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id;
 
-Spring security expects above tables and schema to be present. But if we had different tables and schema, there is a way to tell Spring Security to use that this way:
+Spring Security expects above tables and schema to be present in database. But if we had different tables and schema, there is a way to tell Spring Security to use that instead:
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
