@@ -16,9 +16,9 @@ Go to localhost:8080/register to register and localhost:8080/login to login.
 
 If this application were to use JDBC type data store, and if we didn't have custom database schema, spring would have looked for the following tables and schema in a database:
 
-select username,password,enabled from users where username = ?;
-select username,authority from authorities where username = ?;
-select g.id, g.group_name, ga.authority from groups g, group_members gm, group_authorities ga where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id;
+    select username,password,enabled from users where username = ?;
+    select username,authority from authorities where username = ?;
+    select g.id, g.group_name, ga.authority from groups g, group_members gm, group_authorities ga where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id;
 
 Spring security expects above tables and schema to be present. But if we had different tables and schema, there is a way to tell Spring Security to use that this way:
 
