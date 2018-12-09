@@ -1,4 +1,4 @@
-# In-memory-Authentication
+# Spring Security And Mongodb
 
 A quick Spring Security in-memory authentication Application that uses Mongodb as datastore.
 
